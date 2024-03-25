@@ -25,20 +25,28 @@ export default function EventCreateForm(props) {
   const initialValues = {
     name: "",
     description: "",
+    datetime: "",
+    recurring: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [description, setDescription] = React.useState(
     initialValues.description
   );
+  const [datetime, setDatetime] = React.useState(initialValues.datetime);
+  const [recurring, setRecurring] = React.useState(initialValues.recurring);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
     setDescription(initialValues.description);
+    setDatetime(initialValues.datetime);
+    setRecurring(initialValues.recurring);
     setErrors({});
   };
   const validations = {
     name: [{ type: "Required" }],
     description: [],
+    datetime: [],
+    recurring: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -57,6 +65,23 @@ export default function EventCreateForm(props) {
     setErrors((errors) => ({ ...errors, [fieldName]: validationResponse }));
     return validationResponse;
   };
+  const convertToLocal = (date) => {
+    const df = new Intl.DateTimeFormat("default", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      calendar: "iso8601",
+      numberingSystem: "latn",
+      hourCycle: "h23",
+    });
+    const parts = df.formatToParts(date).reduce((acc, part) => {
+      acc[part.type] = part.value;
+      return acc;
+    }, {});
+    return `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}`;
+  };
   return (
     <Grid
       as="form"
@@ -68,6 +93,8 @@ export default function EventCreateForm(props) {
         let modelFields = {
           name,
           description,
+          datetime,
+          recurring,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -132,6 +159,8 @@ export default function EventCreateForm(props) {
             const modelFields = {
               name: value,
               description,
+              datetime,
+              recurring,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -157,6 +186,8 @@ export default function EventCreateForm(props) {
             const modelFields = {
               name,
               description: value,
+              datetime,
+              recurring,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -170,6 +201,66 @@ export default function EventCreateForm(props) {
         errorMessage={errors.description?.errorMessage}
         hasError={errors.description?.hasError}
         {...getOverrideProps(overrides, "description")}
+      ></TextField>
+      <TextField
+        label="Datetime"
+        isRequired={false}
+        isReadOnly={false}
+        type="datetime-local"
+        value={datetime && convertToLocal(new Date(datetime))}
+        onChange={(e) => {
+          let value =
+            e.target.value === "" ? "" : new Date(e.target.value).toISOString();
+          if (onChange) {
+            const modelFields = {
+              name,
+              description,
+              datetime: value,
+              recurring,
+            };
+            const result = onChange(modelFields);
+            value = result?.datetime ?? value;
+          }
+          if (errors.datetime?.hasError) {
+            runValidationTasks("datetime", value);
+          }
+          setDatetime(value);
+        }}
+        onBlur={() => runValidationTasks("datetime", datetime)}
+        errorMessage={errors.datetime?.errorMessage}
+        hasError={errors.datetime?.hasError}
+        {...getOverrideProps(overrides, "datetime")}
+      ></TextField>
+      <TextField
+        label="Recurring"
+        isRequired={false}
+        isReadOnly={false}
+        type="number"
+        step="any"
+        value={recurring}
+        onChange={(e) => {
+          let value = isNaN(parseInt(e.target.value))
+            ? e.target.value
+            : parseInt(e.target.value);
+          if (onChange) {
+            const modelFields = {
+              name,
+              description,
+              datetime,
+              recurring: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.recurring ?? value;
+          }
+          if (errors.recurring?.hasError) {
+            runValidationTasks("recurring", value);
+          }
+          setRecurring(value);
+        }}
+        onBlur={() => runValidationTasks("recurring", recurring)}
+        errorMessage={errors.recurring?.errorMessage}
+        hasError={errors.recurring?.hasError}
+        {...getOverrideProps(overrides, "recurring")}
       ></TextField>
       <Flex
         justifyContent="space-between"
