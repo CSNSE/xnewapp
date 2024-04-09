@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { FlexProps, TextProps } from "@aws-amplify/ui-react";
+import { TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -18,12 +18,13 @@ export declare type Variant = {
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type EventCardOverridesProps = {
-    EventCard?: PrimitiveOverrideProps<FlexProps>;
+    EventCard?: PrimitiveOverrideProps<ViewProps>;
     Title?: PrimitiveOverrideProps<TextProps>;
     Description?: PrimitiveOverrideProps<TextProps>;
     Date?: PrimitiveOverrideProps<TextProps>;
+    "Rectangle 2"?: PrimitiveOverrideProps<ViewProps>;
 } & EscapeHatchProps;
-export declare type EventCardProps = React.PropsWithChildren<Partial<FlexProps> & {
+export declare type EventCardProps = React.PropsWithChildren<Partial<ViewProps> & {
     event?: any;
 } & {
     overrides?: EventCardOverridesProps | undefined | null;

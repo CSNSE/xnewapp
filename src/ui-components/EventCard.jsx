@@ -7,19 +7,20 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "./utils";
-import { Flex, Text } from "@aws-amplify/ui-react";
+import { Text, View } from "@aws-amplify/ui-react";
 export default function EventCard(props) {
   const { event, overrides, ...rest } = props;
   return (
-    <Flex
-      gap="10px"
-      direction="column"
+    <View
       width="747px"
-      height="233px"
-      justifyContent="flex-start"
-      alignItems="flex-start"
+      height="194px"
+      display="block"
+      gap="unset"
+      alignItems="unset"
+      justifyContent="unset"
       position="relative"
-      padding="32px 32px 32px 32px"
+      borderRadius="9px"
+      padding="0px 0px 0px 0px"
       backgroundColor="rgba(239,240,240,1)"
       {...getOverrideProps(overrides, "EventCard")}
       {...rest}
@@ -34,13 +35,13 @@ export default function EventCard(props) {
         display="block"
         direction="column"
         justifyContent="unset"
-        width="unset"
+        width="683px"
         height="unset"
         gap="unset"
         alignItems="unset"
-        shrink="0"
-        alignSelf="stretch"
-        position="relative"
+        position="absolute"
+        top="0px"
+        left="0px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children={event?.name}
@@ -56,13 +57,13 @@ export default function EventCard(props) {
         display="block"
         direction="column"
         justifyContent="unset"
-        width="unset"
+        width="683px"
         height="unset"
         gap="unset"
         alignItems="unset"
-        shrink="0"
-        alignSelf="stretch"
-        position="relative"
+        position="absolute"
+        top="65px"
+        left="0px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children={event?.description}
@@ -82,13 +83,29 @@ export default function EventCard(props) {
         height="unset"
         gap="unset"
         alignItems="unset"
-        shrink="0"
-        position="relative"
+        position="absolute"
+        top="118px"
+        left="0px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children={event?.datetime}
         {...getOverrideProps(overrides, "Date")}
       ></Text>
-    </Flex>
+      <View
+        width="8px"
+        height="193px"
+        display="block"
+        gap="unset"
+        alignItems="unset"
+        justifyContent="unset"
+        position="absolute"
+        top="1px"
+        left="739px"
+        borderRadius="0px 9px 9px 0px"
+        padding="0px 0px 0px 0px"
+        backgroundColor="rgba(125,214,232,1)"
+        {...getOverrideProps(overrides, "Rectangle 2")}
+      ></View>
+    </View>
   );
 }
