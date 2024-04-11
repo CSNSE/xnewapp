@@ -4,5 +4,4 @@ type Event @model @auth(rules: [{allow: private}]) {
   description: String
   datetime: AWSDateTime
   recurring: Int
-}
- 
+} 
