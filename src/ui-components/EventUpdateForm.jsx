@@ -28,14 +28,12 @@ export default function EventUpdateForm(props) {
     name: "",
     description: "",
     datetime: "",
-    recurring: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [description, setDescription] = React.useState(
     initialValues.description
   );
   const [datetime, setDatetime] = React.useState(initialValues.datetime);
-  const [recurring, setRecurring] = React.useState(initialValues.recurring);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = eventRecord
@@ -44,7 +42,6 @@ export default function EventUpdateForm(props) {
     setName(cleanValues.name);
     setDescription(cleanValues.description);
     setDatetime(cleanValues.datetime);
-    setRecurring(cleanValues.recurring);
     setErrors({});
   };
   const [eventRecord, setEventRecord] = React.useState(eventModelProp);
@@ -67,7 +64,6 @@ export default function EventUpdateForm(props) {
     name: [{ type: "Required" }],
     description: [],
     datetime: [],
-    recurring: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -115,7 +111,6 @@ export default function EventUpdateForm(props) {
           name,
           description: description ?? null,
           datetime: datetime ?? null,
-          recurring: recurring ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -179,7 +174,6 @@ export default function EventUpdateForm(props) {
               name: value,
               description,
               datetime,
-              recurring,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -206,7 +200,6 @@ export default function EventUpdateForm(props) {
               name,
               description: value,
               datetime,
-              recurring,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -235,7 +228,6 @@ export default function EventUpdateForm(props) {
               name,
               description,
               datetime: value,
-              recurring,
             };
             const result = onChange(modelFields);
             value = result?.datetime ?? value;
@@ -249,37 +241,6 @@ export default function EventUpdateForm(props) {
         errorMessage={errors.datetime?.errorMessage}
         hasError={errors.datetime?.hasError}
         {...getOverrideProps(overrides, "datetime")}
-      ></TextField>
-      <TextField
-        label="Recurring"
-        isRequired={false}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={recurring}
-        onChange={(e) => {
-          let value = isNaN(parseInt(e.target.value))
-            ? e.target.value
-            : parseInt(e.target.value);
-          if (onChange) {
-            const modelFields = {
-              name,
-              description,
-              datetime,
-              recurring: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.recurring ?? value;
-          }
-          if (errors.recurring?.hasError) {
-            runValidationTasks("recurring", value);
-          }
-          setRecurring(value);
-        }}
-        onBlur={() => runValidationTasks("recurring", recurring)}
-        errorMessage={errors.recurring?.errorMessage}
-        hasError={errors.recurring?.hasError}
-        {...getOverrideProps(overrides, "recurring")}
       ></TextField>
       <Flex
         justifyContent="space-between"

@@ -25,6 +25,7 @@ export const updateEvent = /* GraphQL */ `
       id
       name
       description
+      datetime
       createdAt
       updatedAt
       __typename
@@ -40,6 +41,7 @@ export const deleteEvent = /* GraphQL */ `
       id
       name
       description
+      datetime
       createdAt
       updatedAt
       __typename

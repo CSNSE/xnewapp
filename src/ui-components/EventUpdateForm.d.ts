@@ -25,13 +25,11 @@ export declare type EventUpdateFormInputValues = {
     name?: string;
     description?: string;
     datetime?: string;
-    recurring?: number;
 };
 export declare type EventUpdateFormValidationValues = {
     name?: ValidationFunction<string>;
     description?: ValidationFunction<string>;
     datetime?: ValidationFunction<string>;
-    recurring?: ValidationFunction<number>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type EventUpdateFormOverridesProps = {
@@ -39,7 +37,6 @@ export declare type EventUpdateFormOverridesProps = {
     name?: PrimitiveOverrideProps<TextFieldProps>;
     description?: PrimitiveOverrideProps<TextFieldProps>;
     datetime?: PrimitiveOverrideProps<TextFieldProps>;
-    recurring?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type EventUpdateFormProps = React.PropsWithChildren<{
     overrides?: EventUpdateFormOverridesProps | undefined | null;

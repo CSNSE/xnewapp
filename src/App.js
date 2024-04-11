@@ -10,7 +10,7 @@ class App extends Component {
   return (
     <div className="App"><header className="App-header">
 <Routes>
-<Route exact path='/' element={<div><EventCardCollection/></div>} />
+<Route exact path='/' element= {<div><EventCardCollection/></div>} />
 <Route exact path='/new' element= {<EventCreateForm/>} />
 </Routes>
 </header></div>

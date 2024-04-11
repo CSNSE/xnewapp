@@ -25,13 +25,11 @@ export declare type EventCreateFormInputValues = {
     name?: string;
     description?: string;
     datetime?: string;
-    recurring?: number;
 };
 export declare type EventCreateFormValidationValues = {
     name?: ValidationFunction<string>;
     description?: ValidationFunction<string>;
     datetime?: ValidationFunction<string>;
-    recurring?: ValidationFunction<number>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type EventCreateFormOverridesProps = {
@@ -39,7 +37,6 @@ export declare type EventCreateFormOverridesProps = {
     name?: PrimitiveOverrideProps<TextFieldProps>;
     description?: PrimitiveOverrideProps<TextFieldProps>;
     datetime?: PrimitiveOverrideProps<TextFieldProps>;
-    recurring?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type EventCreateFormProps = React.PropsWithChildren<{
     overrides?: EventCreateFormOverridesProps | undefined | null;

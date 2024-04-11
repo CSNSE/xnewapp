@@ -7,6 +7,7 @@ export const getEvent = /* GraphQL */ `
       id
       name
       description
+      datetime
       createdAt
       updatedAt
       __typename
@@ -24,6 +25,7 @@ export const listEvents = /* GraphQL */ `
         id
         name
         description
+        datetime
         createdAt
         updatedAt
         __typename
