@@ -10,6 +10,7 @@ export const createEvent = /* GraphQL */ `
       id
       name
       description
+      datetime
       createdAt
       updatedAt
       __typename
