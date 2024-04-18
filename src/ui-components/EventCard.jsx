@@ -21,7 +21,7 @@ export default function EventCard(props) {
       position="relative"
       borderRadius="9px"
       padding="0px 0px 0px 0px"
-      backgroundColor="rgba(239,240,240,1)"
+      backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "EventCard")}
       {...rest}
     >
@@ -40,8 +40,8 @@ export default function EventCard(props) {
         gap="unset"
         alignItems="unset"
         position="absolute"
-        top="0px"
-        left="0px"
+        top="62px"
+        left="22px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children={event?.name}
@@ -62,8 +62,8 @@ export default function EventCard(props) {
         gap="unset"
         alignItems="unset"
         position="absolute"
-        top="65px"
-        left="0px"
+        top="130px"
+        left="22px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children={event?.description}
@@ -71,10 +71,10 @@ export default function EventCard(props) {
       ></Text>
       <Text
         fontFamily="Inter"
-        fontSize="40px"
-        fontWeight="400"
+        fontSize="32px"
+        fontWeight="200"
         color="rgba(0,0,0,1)"
-        lineHeight="60px"
+        lineHeight="48px"
         textAlign="left"
         display="block"
         direction="column"
@@ -84,27 +84,41 @@ export default function EventCard(props) {
         gap="unset"
         alignItems="unset"
         position="absolute"
-        top="118px"
-        left="0px"
+        top="12px"
+        left="22px"
         padding="0px 0px 0px 0px"
         whiteSpace="pre-wrap"
         children={event?.datetime}
         {...getOverrideProps(overrides, "Date")}
       ></Text>
       <View
-        width="8px"
-        height="193px"
+        width="9px"
+        height="194px"
         display="block"
         gap="unset"
         alignItems="unset"
         justifyContent="unset"
         position="absolute"
-        top="1px"
-        left="739px"
+        top="0px"
+        left="738px"
         borderRadius="0px 9px 9px 0px"
         padding="0px 0px 0px 0px"
-        backgroundColor="rgba(125,214,232,1)"
+        backgroundColor="rgba(64,170,191,1)"
         {...getOverrideProps(overrides, "Rectangle 2")}
+      ></View>
+      <View
+        width="149px"
+        height="2px"
+        display="block"
+        gap="unset"
+        alignItems="unset"
+        justifyContent="unset"
+        position="absolute"
+        top="60px"
+        left="18px"
+        padding="0px 0px 0px 0px"
+        backgroundColor="rgba(217,217,217,1)"
+        {...getOverrideProps(overrides, "Rectangle 3")}
       ></View>
     </View>
   );

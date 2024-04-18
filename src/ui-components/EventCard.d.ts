@@ -23,6 +23,7 @@ export declare type EventCardOverridesProps = {
     Description?: PrimitiveOverrideProps<TextProps>;
     Date?: PrimitiveOverrideProps<TextProps>;
     "Rectangle 2"?: PrimitiveOverrideProps<ViewProps>;
+    "Rectangle 3"?: PrimitiveOverrideProps<ViewProps>;
 } & EscapeHatchProps;
 export declare type EventCardProps = React.PropsWithChildren<Partial<ViewProps> & {
     event?: any;
