@@ -12,6 +12,7 @@ class App extends Component {
 <Routes>
 <Route exact path='/' element= {<div><Navbar  style={{'margin-bottom': '20px'}}/><EventCardCollection/></div>} />
 <Route exact path='/new' element= {<div><Navbar style={{'margin-bottom': '20px'}}/><EventCreateForm/></div>} />
+<Route path='/edit/' element= {<div><Navbar style={{'margin-bottom': '20px'}}/></div>} />
 </Routes>
 </header></div>
 

@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -24,6 +24,8 @@ export declare type EventCardOverridesProps = {
     Date?: PrimitiveOverrideProps<TextProps>;
     "Rectangle 2"?: PrimitiveOverrideProps<ViewProps>;
     "Rectangle 3"?: PrimitiveOverrideProps<ViewProps>;
+    "Edit Button"?: PrimitiveOverrideProps<ButtonProps>;
+    "Delete Button"?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type EventCardProps = React.PropsWithChildren<Partial<ViewProps> & {
     event?: any;

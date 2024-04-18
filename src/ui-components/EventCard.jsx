@@ -6,10 +6,27 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
-import { Text, View } from "@aws-amplify/ui-react";
+import { getOverrideProps, useNavigateAction } from "./utils";
+import { generateClient } from "aws-amplify/api";
+import { deleteEvent } from "../graphql/mutations";
+import { Button, Text, View } from "@aws-amplify/ui-react";
+const client = generateClient();
 export default function EventCard(props) {
   const { event, overrides, ...rest } = props;
+  const editButtonOnClick = useNavigateAction({
+    type: "url",
+    url: `${"/edit/"}${event?.id}`,
+  });
+  const deleteButtonOnClick = async () => {
+    await client.graphql({
+      query: deleteEvent.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          id: event?.id,
+        },
+      },
+    });
+  };
   return (
     <View
       width="747px"
@@ -103,7 +120,7 @@ export default function EventCard(props) {
         left="738px"
         borderRadius="0px 9px 9px 0px"
         padding="0px 0px 0px 0px"
-        backgroundColor="rgba(64,170,191,1)"
+        backgroundColor="rgba(125,214,232,1)"
         {...getOverrideProps(overrides, "Rectangle 2")}
       ></View>
       <View
@@ -120,6 +137,38 @@ export default function EventCard(props) {
         backgroundColor="rgba(217,217,217,1)"
         {...getOverrideProps(overrides, "Rectangle 3")}
       ></View>
+      <Button
+        width="unset"
+        height="unset"
+        position="absolute"
+        top="22px"
+        left="604px"
+        backgroundColor="rgba(64,170,191,1)"
+        size="default"
+        isDisabled={false}
+        variation="primary"
+        children="Edit Event"
+        onClick={() => {
+          editButtonOnClick();
+        }}
+        {...getOverrideProps(overrides, "Edit Button")}
+      ></Button>
+      <Button
+        width="unset"
+        height="unset"
+        position="absolute"
+        top="130px"
+        left="594px"
+        backgroundColor="rgba(191,64,64,1)"
+        size="default"
+        isDisabled={false}
+        variation="primary"
+        children="Delete Event"
+        onClick={() => {
+          deleteButtonOnClick();
+        }}
+        {...getOverrideProps(overrides, "Delete Button")}
+      ></Button>
     </View>
   );
 }
